@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{url_for('static', filename='image.css')}}">
+{% endblock %}
+
+{% block style %}
+    .row {
+        margin: 5em auto;
+        max-width: 720px;
+        background-color: white;
+        padding: 3em 5em;
+        border-radius: 10%;
+    }
+{% endblock %}
+
+
+
+{% block section %}
+    <form class="row g-3" method="POST" enctype="multipart/form-data">
+        <h3>Sign-Up</h3>
+        {{ form.hidden_tag() }}
+
+        <div class="col-md-6">
+            {% if form.first_name.errors %}
+                {{ form.first_name.label(class="form-label") }}
+                {{ form.first_name(class="form-control is-invalid", placeholder="First Name") }}
+                <div class="invalid-feedback">
+                    {% for error in form.first_name.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.first_name.label(class="form-label") }}
+                {{ form.first_name(class="form-control", placeholder="First Name") }}
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if form.last_name.errors %}
+                {{ form.last_name.label(class="form-label") }}
+                {{ form.last_name(class="form-control is-invalid", placeholder="Last Name") }}
+                <div class="invalid-feedback">
+                    {% for error in form.last_name.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.last_name.label(class="form-label") }}
+                {{ form.last_name(class="form-control", placeholder="Last Name") }}
+            {% endif %}
+        </div>
+        <div class="col-6">
+            {% if form.username.errors %}
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control is-invalid", placeholder="Username", autocomplete="off") }}
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", placeholder="Username", autocomplete='off') }}
+            {% endif %}
+        </div>
+        <div class="col-6">
+            {% if form.email.errors %}
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control is-invalid", placeholder="Email") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", placeholder="Email") }}
+            {% endif %}
+        </div>
+        <div class="col-6">
+            {% if form.password.errors %}
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control is-invalid", placeholder="Password") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Password") }}
+            {% endif %}
+        </div>
+        <div class="col-6 mb-2">
+            {% if form.confirm_password.errors %}
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-control is-invalid", placeholder="Confirm Password") }}
+                <div class="invalid-feedback">
+                    {% for error in form.confirm_password.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+            {% endif %}
+        </div>
+        <div class="col-12 uploader" style="margin: .8em 0;">
+            {% if form.img.errors %}
+                {{ form.img(class="is-invalid") }}
+                {{ form.img.label(style="color: rgb(69, 76, 173); font-weight: bold;") }}
+                <div class="invalid-feedback">
+                    {% for error in form.img.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.img() }}
+                {{ form.img.label(style="color: rgb(69, 76, 173); font-weight: bold;") }}
+            {% endif %}
+        </div>
+
+        <div class="col-12 uploader">
+            <center>{{ form.submit(class="btn") }}</center>
+        </div>
+    </form>
+{% endblock %}
